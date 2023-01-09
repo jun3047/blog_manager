@@ -30,9 +30,28 @@ header {
     }
 
     .logo, .overview, .link-roll, .login{
+
         font-size: 20px;
         font-weight: 600;
         padding: 20px;
+        transition: all 0.3s;
+
+        &:hover{
+            color: $light-color;
+            cursor: pointer;
+        }
+    }
+
+    .overview .overview-active{
+        color: $light-color;
+    }
+
+    .link-roll .link-roll-active{
+        color: $light-color;
+    }
+
+    .login .login-active{
+        color: $light-color;
     }
 
     .active {
@@ -58,7 +77,8 @@ header {
     position: relative;
     bottom: 100px;
     margin: auto;
-    width: 700px;
+    width: 800px;
+    min-width: 700px;
     height: auto;
     padding: 100px 0 60px 0;
     background-color: $light-color;
@@ -134,5 +154,107 @@ header {
     &:hover{
         cursor: pointer;
         border: 2px solid $main-color;
+    }
+}
+
+.page{
+    line-height: 26px;
+    font-size: 20px;
+    border: 2px solid $blod-color;
+    border-radius: 20px;
+    margin: 30px auto;
+    width: 600px;
+    padding: 30px;
+}
+
+.result-box{
+    max-height: 80vh;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 10px 30px;
+    background-color: $light-color;
+    width: 80%;
+    border-radius: 10px;
+    overflow: scroll;
+}
+
+.result{
+    justify-content: center;
+    background-color: white;
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all 0.3s;
+
+    &:hover{
+        cursor: pointer;
+        transform:scale(1.03);
+    }
+    
+    h4{
+        margin: 0;
+        padding: 10px 0 0 10px;
+    }
+
+    div{
+        display: flex;
+        padding: 10px;
+    }
+}
+
+.detail{
+    justify-content: center;
+    background-color: white;
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all 0.3s;
+    
+    h4{
+        margin: 0;
+        padding: 10px 0 0 10px;
+    }
+
+    div{
+        display: flex;
+        padding: 10px;
+    }
+}
+
+.detail-box{
+    max-height: 80vh;
+    max-width: 1800px;
+    margin: 40px auto;
+    padding: 10px 30px;
+    background-color: $light-color;
+    width: 80%;
+    border-radius: 10px;
+    overflow: scroll;
+}
+
+
+// .title{
+//     background-color: white;
+//     padding: 10px 20px;
+//     border-radius: 10px;
+//     width: fit-content;
+// }
+
+.table-wrap{
+    overflow: scroll;
+    background-color: white;
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 10px;
+
+
+    table{
+        margin: 16px 0px;
+    }
+
+    th, td{
+        min-width: 120px;
+        padding: 10px;
+        text-align: center;
     }
 }

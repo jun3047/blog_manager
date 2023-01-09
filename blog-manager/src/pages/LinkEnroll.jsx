@@ -22,7 +22,7 @@ const LinkEnroll = () => {
     const [keywordBox, setKeywordBox] = useState([{title: "", keywords: []}]);
 
     return(<>
-    <Header></Header>
+    <Header now="link-roll-active"></Header>
     <div className="intro">
         <h1>블로그 상위노출 매니저</h1>
         <p>상위노출 현황을 매일 보고 해줍니다</p>

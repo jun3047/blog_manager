@@ -28,6 +28,20 @@ header .logo, header .overview, header .link-roll, header .login {
   font-size: 20px;
   font-weight: 600;
   padding: 20px;
+  transition: all 0.3s;
+}
+header .logo:hover, header .overview:hover, header .link-roll:hover, header .login:hover {
+  color: #A6D0AF;
+  cursor: pointer;
+}
+header .overview .overview-active {
+  color: #A6D0AF;
+}
+header .link-roll .link-roll-active {
+  color: #A6D0AF;
+}
+header .login .login-active {
+  color: #A6D0AF;
 }
 header .active {
   color: #A6D0AF;
@@ -52,6 +66,7 @@ header .active {
   bottom: 100px;
   margin: auto;
   width: 800px;
+  min-width: 700px;
   height: auto;
   padding: 100px 0 60px 0;
   background-color: #A6D0AF;
@@ -120,4 +135,90 @@ header .active {
 .plus:hover {
   cursor: pointer;
   border: 2px solid #409051;
+}
+
+.page {
+  line-height: 26px;
+  font-size: 20px;
+  border: 2px solid #305C3A;
+  border-radius: 20px;
+  margin: 30px auto;
+  width: 600px;
+  padding: 30px;
+}
+
+.result-box {
+  max-height: 80vh;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 10px 30px;
+  background-color: #A6D0AF;
+  width: 80%;
+  border-radius: 10px;
+  overflow: scroll;
+}
+
+.result {
+  justify-content: center;
+  background-color: white;
+  margin: 20px 0;
+  padding: 10px;
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+.result:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+}
+.result h4 {
+  margin: 0;
+  padding: 10px 0 0 10px;
+}
+.result div {
+  display: flex;
+  padding: 10px;
+}
+
+.detail {
+  justify-content: center;
+  background-color: white;
+  margin: 20px 0;
+  padding: 10px;
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+.detail h4 {
+  margin: 0;
+  padding: 10px 0 0 10px;
+}
+.detail div {
+  display: flex;
+  padding: 10px;
+}
+
+.detail-box {
+  max-height: 80vh;
+  max-width: 1800px;
+  margin: 40px auto;
+  padding: 10px 30px;
+  background-color: #A6D0AF;
+  width: 80%;
+  border-radius: 10px;
+  overflow: scroll;
+}
+
+.table-wrap {
+  overflow: scroll;
+  background-color: white;
+  margin: 20px 0;
+  padding: 10px;
+  border-radius: 10px;
+}
+.table-wrap table {
+  margin: 16px 0px;
+}
+.table-wrap th, .table-wrap td {
+  min-width: 120px;
+  padding: 10px;
+  text-align: center;
 }/*# sourceMappingURL=App.css.map */
