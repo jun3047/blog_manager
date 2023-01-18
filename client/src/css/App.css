@@ -103,6 +103,23 @@ header .active {
   outline: 1px solid #305C3A;
 }
 
+.register {
+  font-size: 20px;
+  font-weight: 700;
+  padding: 10px 20px;
+  position: absolute;
+  bottom: -70px;
+  left: 0;
+  background-color: #409051;
+  border: 2px solid #409051;
+  color: white;
+}
+.register:hover {
+  cursor: pointer;
+  background-color: #A6D0AF;
+  border: 2px solid #409051;
+}
+
 .submit {
   font-size: 20px;
   font-weight: 700;
@@ -159,6 +176,7 @@ header .active {
 }
 
 .result {
+  position: relative;
   justify-content: center;
   background-color: white;
   margin: 20px 0;
@@ -174,9 +192,20 @@ header .active {
   margin: 0;
   padding: 10px 0 0 10px;
 }
-.result div {
+.result .result-keyword, .result .result-title {
   display: flex;
   padding: 10px;
+}
+.result .del {
+  padding: 10px;
+  font-size: 18px;
+  position: absolute;
+  right: 20px;
+  border: 1px solid white;
+}
+.result .del:hover {
+  border-radius: 30px;
+  border: 1px solid black;
 }
 
 .detail {
@@ -221,4 +250,61 @@ header .active {
   min-width: 120px;
   padding: 10px;
   text-align: center;
+}
+
+.login-wrap {
+  z-index: 0;
+  position: relative;
+  margin: 30px auto;
+  width: 800px;
+  min-width: 700px;
+  height: auto;
+  padding: 100px 0 60px 0;
+  background-color: #A6D0AF;
+  border-radius: 20px;
+}
+.login-wrap h1 {
+  text-align: center;
+}
+
+.login-box {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  margin: 30px auto;
+  height: 250px;
+  width: 500px;
+  background-color: white;
+}
+.login-box h4 {
+  width: 80%;
+  margin: 5px;
+}
+.login-box input {
+  border: none;
+  padding: 15px;
+  width: 400px;
+  font-size: 18px;
+  margin: 10px;
+  outline: 1px solid #305C3A;
+  border-radius: 10px;
+}
+.login-box .submit {
+  font-size: 20px;
+  font-weight: 700;
+  padding: 10px 20px;
+  position: absolute;
+  bottom: -70px;
+  right: 0;
+  background-color: #409051;
+  border: 2px solid #409051;
+  color: white;
+}
+.login-box .submit:hover {
+  cursor: pointer;
+  background-color: #A6D0AF;
+  border: 2px solid #409051;
 }/*# sourceMappingURL=App.css.map */

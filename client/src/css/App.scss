@@ -119,6 +119,25 @@ header {
     }
 }
 
+.register{
+    font-size: 20px;
+    font-weight: 700;
+    padding: 10px 20px;
+    position: absolute;
+    bottom: -70px;
+    left: 0;
+
+    background-color: $main-color;
+    border: 2px solid $main-color;
+    color: white;
+
+    &:hover{
+        cursor: pointer;
+        background-color: $light-color;
+        border: 2px solid $main-color;
+    }
+}
+
 .submit{
     font-size: 20px;
     font-weight: 700;
@@ -179,6 +198,7 @@ header {
 }
 
 .result{
+    position: relative;
     justify-content: center;
     background-color: white;
     margin: 20px 0;
@@ -196,9 +216,22 @@ header {
         padding: 10px 0 0 10px;
     }
 
-    div{
+    .result-keyword, .result-title{
         display: flex;
         padding: 10px;
+    }
+
+    .del{
+        padding: 10px;
+        font-size: 18px;
+        position: absolute;
+        right: 20px;
+        border: 1px solid white;
+
+        &:hover{
+            border-radius: 30px;
+            border: 1px solid black;
+        }
     }
 }
 
@@ -256,5 +289,68 @@ header {
         min-width: 120px;
         padding: 10px;
         text-align: center;
+    }
+}
+
+.login-wrap{
+    z-index: 0;
+    position: relative;
+    margin: 30px auto;
+    width: 800px;
+    min-width: 700px;
+    height: auto;
+    padding: 100px 0 60px 0;
+    background-color: $light-color;
+    border-radius: 20px;
+
+    h1{
+        text-align: center;
+    }
+}
+
+.login-box{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    margin: 30px auto;
+    height: 250px;
+    width: 500px;
+    background-color: white;
+
+    h4{
+        width: 80%;
+        margin: 5px;
+    }
+
+    input{
+        border: none;
+        padding: 15px;
+        width: 400px;
+        font-size: 18px;
+        margin: 10px;
+        outline: 1px solid $blod-color;
+        border-radius: 10px;
+    }
+
+    .submit{
+        font-size: 20px;
+        font-weight: 700;
+        padding: 10px 20px;
+        position: absolute;
+        bottom: -70px;
+        right: 0;
+
+        background-color: $main-color;
+        border: 2px solid $main-color;
+        color: white;
+
+        &:hover{
+            cursor: pointer;
+            background-color: $light-color;
+            border: 2px solid $main-color;
+        }
     }
 }

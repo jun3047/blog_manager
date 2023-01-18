@@ -4,6 +4,8 @@ import LinkEnroll from "./pages/LinkEnroll"
 import Intro from "./pages/Intro"
 import MyPage from "./pages/MyPage"
 import Detail from "./pages/Detail"
+import Login from './pages/login';
+import Register from './pages/Register';
 
 
 function App() {
@@ -12,8 +14,10 @@ function App() {
       <Routes>
         <Route path='/' element= { <LinkEnroll/> }></Route>
         <Route path='/intro' element= { <Intro/> }></Route>
-        <Route path='/myPage' element= { <MyPage/> }></Route>
-        <Route path='/myPage/:id' element= { <Detail/> }></Route>
+        <Route path='/login' element= { <Login/> }></Route>
+        <Route path='/register' element= { <Register/> }></Route>
+        <Route path='/myPage/:id' element= { <MyPage/> }></Route>
+        <Route path='/detail/:id' element= { <Detail/> }></Route>
       </Routes>
     </div>
   );

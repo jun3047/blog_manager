@@ -1,17 +1,23 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Header from "../component/Header"
 
 
 const KeywordBox = () => {
+
+    const user = useSelector((state)=> state.user);
+    console.log(user.id);
+
     return(<>
         <div className="keyword-box">
-            <form action="" id="keyword">
+            <form action="/add" method="post" id="keyword">
                 <h4>블로그 글 제목</h4>
-                <input className="title" type="text" placeholder= "영어, 단어는 이렇게 외우는 것입니다." />
+                <input type="text" value={user.id} name="id" style={{display: "none"}}/>
+                <input className="title" name="title" type="text" placeholder= "영어, 단어는 이렇게 외우는 것입니다." />
                 {/* <div className="line"></div> */}
                 <h4>원하는 키워드</h4>
-                <input className="keyword" type="text" placeholder= "학생,수능영어,고등학생,영어꿀팁" />
+                <input className="keyword" name="keywords" type="text" placeholder= "학생,수능영어,고등학생,영어꿀팁" />
             </form>
         </div>
     </>)
