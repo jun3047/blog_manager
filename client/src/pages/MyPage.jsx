@@ -63,21 +63,14 @@ const MyPage = () => {
 
   const {id} = useParams()
 
-  const [data, setData] = useState([
-      {
-          title: '제목 예시임, x 누르면 삭제',
-          keywords: ['이런거', '태그', '검색어', '들어가는거'],
-          _id: 0,
-          writer: '1',
-      }
-  ]);
+  const [data, setData] = useState(null);
 
     return (
       <>
         <Header now="login-active"></Header>
         <div className="result-box">
           {
-          data != "" ?
+          data !== null ?
           data.map((list) => (
             <Result
               writer={id}
@@ -89,7 +82,7 @@ const MyPage = () => {
               setData={setData}
             ></Result>
           )) 
-          : <div>링크 등록에서 추가하셈</div>
+          : <div className="mypage-message"><p>링크 등록에서 추가하면 여기서 볼 수 있어요! 👍</p></div>
         }
         </div>
       </>

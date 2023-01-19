@@ -7,7 +7,6 @@ let user = createSlice({
     reducers : {
         setUser(state, action){
             state = action.payload
-            console.log(state);
             return state
         },
         pulsData(state, action){

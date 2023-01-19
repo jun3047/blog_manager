@@ -40,9 +40,9 @@ const LinkEnroll = () => {
                 return <KeywordBox key={a}></KeywordBox>
             })
         }
-        <div className="plus" onClick={()=>{
+        {/* <div className="plus" onClick={()=>{
             setKeywordBox([...keywordBox, {title: "", keywords: []}])
-        }}>+</div>
+        }}>+</div> */}
         <button form="keyword" className="submit"> 등록하기 </button>
     </div>
     </>)
