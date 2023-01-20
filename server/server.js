@@ -55,11 +55,9 @@ const parsing = async (keyword) => {
 
     $list.each((idx,node) => {
         const title = $(node).find('.total_tit').text();
-        titles.push(title)
-        console.log(title);
+        titles.push(title);
     })
 
-    console.log('titles:'+titles);
     return titles
 }
 
@@ -73,22 +71,30 @@ app.post('/add',function(req,res){
         var totalPost = result.totalPost;
         var keywords = req.body.keywords.replace(" ").split(',');
  
-        db.collection('data').insertOne({_id : totalPost+1, title: req.body.title, keywords: keywords, writer: req.body.id}, ()=>{
+        db.collection('data').insertOne({_id : totalPost+1, title: req.body.title, keywords: keywords, writer: req.body.id, data: []}, ()=>{
             console.log('저장완료');
             db.collection('count').updateOne({name:'dataNum'},{ $inc: {totalPost:1}},(err, result)=>{
                 if(err) return console.log(err);
                 console.log('data 증가 성공');
                 db.collection('user').updateOne({id: req.body.id},{ $push: {data: totalPost+1}});
 
-                schedule.scheduleJob('29 12 * * *', ()=>{
+
+                schedule.scheduleJob('8 * * * *', ()=>{
                     console.log("매일 오전 12시에 실행");
+                    const title = '과팅에서 여친 만드는 마성의 매력, ㅂㄴ 공략법'
+                    const keyword = '과팅'
+                    var date = new Date();
+                    date = date.toLocaleDateString('ko-kr');
 
                     const schedule = parsing("과팅").then((titles)=>{
-
-                        const rank = titles.indexOf('과팅에서 여친 만드는 마성의 매력, ㅂㄴ 공략법')+1
-
+                        const rank = titles.indexOf(title)+1
+                        return rank
+                    }).then((rank)=>{
+                         db.collection('data').updateOne({title:title}, {$push: { data: {keyword: keyword, date: date, rank: rank}}})
                     })
-                    //제목, 시간, 순위, 1
+                    //제목, 시간, 순위
+
+                    // data - rank - [{keyword: , date: , rank: }, ]
                 })
 
                 res.redirect('/myPage/'+req.body.id); //res는 하나만 써야함.
@@ -184,6 +190,7 @@ passport.use(new LocalStrategy({
       }
     })
 }));
+
 
 //   세션등록하기
 passport.serializeUser((user, done)=>{

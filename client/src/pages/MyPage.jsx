@@ -8,19 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Result = ({title, keywords, id, data, setData, writer}) => {
 
-    const user = useSelector((state)=> state.user)
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-
-    useEffect(()=>{
-      axios
-          .get("/list") //보통 json
-          .then((d) => {
-            let temp = d.data.filter(x=> x.writer === writer)
-            console.log(temp)
-            temp !== [] && setData(temp)
-          })
-    },[])
 
     return(
         <div className="result" onClick={()=>{
@@ -64,6 +52,16 @@ const MyPage = () => {
   const {id} = useParams()
 
   const [data, setData] = useState(null);
+  
+  useEffect(()=>{
+    axios
+        .get("/list") //보통 json
+        .then((d) => {
+          let temp = d.data.filter(x=> x.writer === id)
+          console.log(temp)
+          temp !== [] && setData(temp)
+        })
+  },[])
 
     return (
       <>
@@ -73,7 +71,6 @@ const MyPage = () => {
           data !== null ?
           data.map((list) => (
             <Result
-              writer={id}
               key={list._id}
               id={list._id}
               title={list.title}
