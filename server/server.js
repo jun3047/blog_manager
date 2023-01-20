@@ -35,6 +35,35 @@ app.get('/',function(req, res){
     res.sendFile(__dirname + '/build/index.html')
 })
 
+const axios = require("axios")
+const cheerio = require("cheerio");
+
+const getHTML = async(keyword) => {
+    try {
+        return await axios.get("https://search.naver.com/search.naver?where=view&sm=tab_jum&query=" + encodeURI(keyword))
+    }catch(err) {
+        console.log(err);
+    }
+}
+
+const parsing = async (keyword) => {
+    const html = await getHTML(keyword);
+    const $ = cheerio.load(html.data);
+    const $list = $(".total_area")
+
+    let titles = Array();
+
+    $list.each((idx,node) => {
+        const title = $(node).find('.total_tit').text();
+        titles.push(title)
+        console.log(title);
+    })
+
+    console.log('titles:'+titles);
+    return titles
+}
+
+const schedule = require('node-schedule');
 // /add로 db에 때려 넣기
 
 app.post('/add',function(req,res){
@@ -49,7 +78,19 @@ app.post('/add',function(req,res){
             db.collection('count').updateOne({name:'dataNum'},{ $inc: {totalPost:1}},(err, result)=>{
                 if(err) return console.log(err);
                 console.log('data 증가 성공');
-                db.collection('user').updateOne({id: req.body.id},{ $push: {data: totalPost+1}})
+                db.collection('user').updateOne({id: req.body.id},{ $push: {data: totalPost+1}});
+
+                schedule.scheduleJob('29 12 * * *', ()=>{
+                    console.log("매일 오전 12시에 실행");
+
+                    const schedule = parsing("과팅").then((titles)=>{
+
+                        const rank = titles.indexOf('과팅에서 여친 만드는 마성의 매력, ㅂㄴ 공략법')+1
+
+                    })
+                    //제목, 시간, 순위, 1
+                })
+
                 res.redirect('/myPage/'+req.body.id); //res는 하나만 써야함.
             })
         })
@@ -101,6 +142,7 @@ app.post('/register',(req, res)=>{
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
+const { title } = require('process');
 
 app.use(session({secret : '비밀코드', resave : true, saveUninitialized: false}));
 app.use(passport.initialize());
