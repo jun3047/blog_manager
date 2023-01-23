@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-const Result = ({title, keywords, id, data, setData, writer}) => {
+const Result = ({title, keywords, id, data, setData}) => {
 
     const navigate = useNavigate();
 
@@ -56,7 +56,6 @@ const MyPage = () => {
         .get("/list") //보통 json
         .then((d) => {
           let temp = d.data.filter(x=> x.writer === id)
-          console.log(temp)
           temp !== [] && setData(temp)
         })
   },[])

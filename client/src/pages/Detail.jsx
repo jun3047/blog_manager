@@ -20,14 +20,22 @@ const Table = () => {
         console.log("data: " + data);
 
         const localData = data.data.filter((data)=> data.keyword === keyword)
+        console.log(localData)
 
         return (
           <>
             <h3 className="title">{keyword}</h3>
             <div className="table-wrap">
               <table>
-                {data.date}
-                <tr>{data.rank}</tr>
+                {
+                  localData.map((data)=>{
+                    
+                    return<td>
+                      <tr>{data.date}</tr>
+                      <tr><b>{data.rank}</b></tr>
+                    </td>
+                  })
+                }
               </table>
             </div>
           </>

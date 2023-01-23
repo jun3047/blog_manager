@@ -79,8 +79,8 @@ app.post('/add',function(req,res){
                 db.collection('user').updateOne({id: req.body.id},{ $push: {data: totalPost+1}});
 
 
-                schedule.scheduleJob('1 * * * * *', ()=>{
-                    console.log("매 1초마다 실행");
+                schedule.scheduleJob('* 8 * * *', ()=>{
+                    console.log("매 8시마다 실행");
 
 
                     keywords.map((keyword)=>{
@@ -111,6 +111,8 @@ app.post('/add',function(req,res){
     })
 })
 
+// 
+
 app.get('/list',(req,res)=>{
     db.collection('data').find().toArray((err,result)=>{
         if(err) return err
@@ -125,6 +127,7 @@ app.delete('/list',(req, res)=>{
     })
 })
 
+app.get('')
 
 
 app.post('/register',(req, res)=>{
