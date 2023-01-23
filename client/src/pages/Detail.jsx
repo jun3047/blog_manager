@@ -17,23 +17,20 @@ var data;
 const Table = () => {
 
     return data.keywords.map((keyword)=>{
-        const index = data.keywords.indexOf(keyword)
+        console.log("data: " + data);
+
+        const localData = data.data.filter((data)=> data.keyword === keyword)
+
         return (
-            <>
+          <>
             <h3 className="title">{keyword}</h3>
             <div className="table-wrap">
-                <table>
-                {
-                    // Object.keys(data.topRate[index]).map((date)=><th>{date}</th>)
-                }
-                <tr>
-                {
-                    // Object.values(data.topRate[index]).map((date)=><td>{date}</td>)
-                }
-                </tr>
-                </table>
+              <table>
+                {data.date}
+                <tr>{data.rank}</tr>
+              </table>
             </div>
-            </>
+          </>
         );
     })
 }
@@ -42,7 +39,6 @@ const Detail = () => {
 
     const location = useLocation();
     data = location.state.data;
-    console.log(data)
 
     return(<>
     <Header now="login-active"></Header>

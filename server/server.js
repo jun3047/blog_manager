@@ -40,7 +40,7 @@ const cheerio = require("cheerio");
 
 const getHTML = async(keyword) => {
     try {
-        return await axios.get("https://search.naver.com/search.naver?where=view&sm=tab_jum&query=" + encodeURI(keyword))
+        return await axios.get("https://search.naver.com/search.naver?query=" + encodeURI(keyword) + "&nso=&where=blog&sm=tab_opt")
     }catch(err) {
         console.log(err);
     }
@@ -79,22 +79,30 @@ app.post('/add',function(req,res){
                 db.collection('user').updateOne({id: req.body.id},{ $push: {data: totalPost+1}});
 
 
-                schedule.scheduleJob('8 * * * *', ()=>{
-                    console.log("매일 오전 12시에 실행");
-                    const title = '과팅에서 여친 만드는 마성의 매력, ㅂㄴ 공략법'
-                    const keyword = '과팅'
-                    var date = new Date();
-                    date = date.toLocaleDateString('ko-kr');
+                schedule.scheduleJob('1 * * * * *', ()=>{
+                    console.log("매 1초마다 실행");
 
-                    const schedule = parsing("과팅").then((titles)=>{
-                        const rank = titles.indexOf(title)+1
-                        return rank
-                    }).then((rank)=>{
-                         db.collection('data').updateOne({title:title}, {$push: { data: {keyword: keyword, date: date, rank: rank}}})
+
+                    keywords.map((keyword)=>{
+                        
+                        const title = req.body.title
+
+                        var date = new Date();
+                        date = date.toLocaleDateString('ko-kr');
+    
+                        const schedule = parsing(keyword)
+                        .then((titles)=>{
+                            const rank = titles.indexOf(title)+1
+                            return rank
+                        }).then((rank)=>{
+                            try{
+                                db.collection('data').updateOne({title:title}, {$push: { data: {keyword: keyword, date: date, rank: rank}}})
+                            } catch (err){
+                                console.log(err);
+                                schedule.cancel();
+                            }   
+                        })
                     })
-                    //제목, 시간, 순위
-
-                    // data - rank - [{keyword: , date: , rank: }, ]
                 })
 
                 res.redirect('/myPage/'+req.body.id); //res는 하나만 써야함.
@@ -109,23 +117,6 @@ app.get('/list',(req,res)=>{
         res.send(result)
     })
 })
-
-// app.get('/list/:id',(req,res)=>{
-//     var list = [];
-//     db.collection('user').findOne({id: req.params.id}, (err, result)=>{
-//         try {
-//             db.collection("data").find({ _id: result.data[i] }).toArray(
-//                 (err, resultData) => {
-//                     console.log("result: " + resultData[0])
-//                     list.push(resultData[0])
-//                 }
-//             )
-
-//         } catch (err) {
-//             console.log(err);
-//         }
-//     })
-// })
 
 app.delete('/list',(req, res)=>{
     db.collection('data').deleteOne({_id: parseInt(req.body._id)},(err,result)=>{

@@ -17,8 +17,6 @@ const Result = ({title, keywords, id, data, setData, writer}) => {
         }}>
             <div className="del" onClick={(e)=>{
                 e.stopPropagation();
-                // const idx = data.findIndex((item) => item._id === id);
-                // data.splice(idx,1)
                 var temp = data.filter((e)=> e._id !== id)
                 console.log(temp)
                 setData(temp)
