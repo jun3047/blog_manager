@@ -1,5 +1,6 @@
 ## ﹖ 블로그 매니저는? <br/>
 크롤링을 활용한 블로그 키워드 상위노출 확인 서비스 <br/><br/>
+<img width="97" alt="스크린샷 2023-01-24 오후 4 28 47" src="https://user-images.githubusercontent.com/25457470/214234646-dd7cbe39-b197-44fc-b0f5-f9f55323b33b.png">
 
 
 ## 🚀 배포링크 <br/>
@@ -51,4 +52,4 @@ https://blog-manager-374408.du.r.appspot.com/ <br/><br/>
 
 상위노출 현환을 알아서, 정리하고 보여줍니다.
 
-그저 글만 쓰고, 아침에 한번 확인하면 됩니다.
+<strong>그저 글만 쓰고, 아침에 한번 확인하면 됩니다.</strong>
