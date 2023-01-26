@@ -6,7 +6,9 @@ import MyPage from "./pages/MyPage"
 import Detail from "./pages/Detail"
 import Login from './pages/login';
 import Register from './pages/Register';
+import ReactG4 from 'react-ga4'
 
+ReactG4.initialize("G-0WD8FQXLEM")
 
 function App() {
   return (
