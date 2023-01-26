@@ -2,7 +2,16 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../component/Header"
+import ReactGA from "react-ga4"
 
+const onClickGA4 = () => {
+    ReactGA.event({
+        action: 'linkEnroll_action',
+        category: 'linkEnroll_category',
+        label: 'linkEnroll_label',
+        value: 'xxxxxx'
+    })
+}
 
 const KeywordBox = () => {
 
@@ -43,7 +52,7 @@ const LinkEnroll = () => {
         {/* <div className="plus" onClick={()=>{
             setKeywordBox([...keywordBox, {title: "", keywords: []}])
         }}>+</div> */}
-        <button form="keyword" className="submit"> 등록하기 </button>
+        <button form="keyword" className="submit" onClick={onClickGA4}> 등록하기 </button>
     </div>
     </>)
 }
