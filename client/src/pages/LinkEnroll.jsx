@@ -1,31 +1,12 @@
 import React from "react";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Header from "../component/Header"
 import ReactGA from "react-ga4"
 
-const KeywordBox = () => {
-
-    const user = useSelector((state)=> state.user);
-    console.log(user.id);
-
-    return(<>
-        <div className="keyword-box">
-            <form action="/add" method="post" id="keyword">
-                <h4>블로그 글 제목</h4>
-                <input type="text" value={user.id} name="id" style={{display: "none"}}/>
-                <input className="title" name="title" type="text" placeholder= "영어, 단어는 이렇게 외우는 것입니다." />
-                {/* <div className="line"></div> */}
-                <h4>원하는 키워드</h4>
-                <input className="keyword" name="keywords" type="text" placeholder= "학생,수능영어,고등학생,영어꿀팁" />
-            </form>
-        </div>
-    </>)
-}
 
 const LinkEnroll = () => {
 
-    const [keywordBox, setKeywordBox] = useState([{title: "", keywords: []}]);
+    let keywordBox = {title: "", keywords: []}
 
     return(<>
     <Header now="link-roll-active"></Header>
@@ -44,5 +25,32 @@ const LinkEnroll = () => {
     </div>
     </>)
 }
+
+const KeywordBox = () => {
+
+    const user = useSelector((state)=> state.user);
+
+    return(<>
+        <div className="keyword-box">
+            <form action="/add" method="post" id="keyword">
+                <h4>블로그 글 제목</h4>
+                <input type="text" value={user.id} name="id" style={{display: "none"}}/>
+                <input className="title" name="title" type="text" placeholder= "영어, 단어는 이렇게 외우는 것입니다." />
+                <h4>원하는 키워드</h4>
+                <input className="keyword" name="keywords" type="text" placeholder= "학생,수능영어,고등학생,영어꿀팁" />
+            </form>
+        </div>
+    </>)
+}
+
+const onClickGA4 = () => {
+    ReactGA.event({
+        action: 'linkEnroll_action',
+        category: 'linkEnroll_category',
+        label: 'linkEnroll_label',
+        value: 'xxxxxx'
+    })
+}
+
 
 export default LinkEnroll;
