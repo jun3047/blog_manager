@@ -37,30 +37,6 @@ app.get('/',function(req, res){
 
 const axios = require("axios")
 const cheerio = require("cheerio");
-
-const getHTML = async(keyword) => {
-    try {
-        return await axios.get("https://search.naver.com/search.naver?query=" + encodeURI(keyword) + "&nso=&where=blog&sm=tab_opt")
-    }catch(err) {
-        console.log(err);
-    }
-}
-
-const parsing = async (keyword) => {
-    const html = await getHTML(keyword);
-    const $ = cheerio.load(html.data);
-    const $list = $(".total_area")
-
-    let titles = Array();
-
-    $list.each((idx,node) => {
-        const title = $(node).find('.total_tit').text();
-        titles.push(title);
-    })
-
-    return titles
-}
-
 const schedule = require('node-schedule');
 // /add로 db에 때려 넣기
 
@@ -81,7 +57,6 @@ app.post('/add',function(req,res){
 
                 schedule.scheduleJob('* 8 * * *', ()=>{
                     console.log("매 8시마다 실행");
-
 
                     keywords.map((keyword)=>{
                         
@@ -110,6 +85,30 @@ app.post('/add',function(req,res){
         })
     })
 })
+
+
+const getHTML = async(keyword) => {
+    try {
+        return await axios.get("https://search.naver.com/search.naver?query=" + encodeURI(keyword) + "&nso=&where=blog&sm=tab_opt")
+    }catch(err) {
+        console.log(err);
+    }
+}
+
+const parsing = async (keyword) => {
+    const html = await getHTML(keyword);
+    const $ = cheerio.load(html.data);
+    const $list = $(".total_area")
+
+    let titles = Array();
+
+    $list.each((idx,node) => {
+        const title = $(node).find('.total_tit').text();
+        titles.push(title);
+    })
+
+    return titles
+}
 
 // 
 

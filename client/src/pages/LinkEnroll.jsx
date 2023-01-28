@@ -4,15 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Header from "../component/Header"
 import ReactGA from "react-ga4"
 
-const onClickGA4 = () => {
-    ReactGA.event({
-        action: 'linkEnroll_action',
-        category: 'linkEnroll_category',
-        label: 'linkEnroll_label',
-        value: 'xxxxxx'
-    })
-}
-
 const KeywordBox = () => {
 
     const user = useSelector((state)=> state.user);
@@ -49,9 +40,6 @@ const LinkEnroll = () => {
                 return <KeywordBox key={a}></KeywordBox>
             })
         }
-        {/* <div className="plus" onClick={()=>{
-            setKeywordBox([...keywordBox, {title: "", keywords: []}])
-        }}>+</div> */}
         <button form="keyword" className="submit" onClick={onClickGA4}> 등록하기 </button>
     </div>
     </>)
